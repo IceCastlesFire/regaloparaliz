@@ -1,0 +1,98 @@
+/* Estilos generales */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.container {
+  text-align: center;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+}
+
+.flower {
+  width: 200px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+}
+
+.flower:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.counter {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #4caf50;
+  animation: fadeIn 0.5s ease;
+}
+
+.counter span {
+  color: #ff5722;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Estilos para los emojis y texto flotantes */
+.floating-heart {
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase; /* Convertir texto a mayúsculas */
+  font-family: 'Courier New', monospace; /* Fuente diferente */
+  animation: floatUp 2s ease-out forwards;
+  pointer-events: none;
+}
+
+.floating-heart.mi-cielo {
+  color: #FF69B4; /* Rosa fuerte */
+}
+
+.floating-heart.mi-nina {
+  color: #87CEEB; /* Azul clarito */
+}
+
+.floating-heart.mi-amor {
+  color: #FF0000; /* Rojo */
+}
+
+.floating-heart.te-amo {mo {
+  color: #B22222; /* Rojo intenso */r: #B22222; /* Rojo intenso */
+}
+
+@keyframes floatUp {yframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% { 100% {
+
+
+
+
+}  }    transform: translateY(-200px) scale(1.5);    opacity: 0;    opacity: 0;
+    transform: translateY(-200px) scale(1.5);
+  }
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de Clics - Para Mi Princesa</title>
+  <!-- Fuente personalizada de Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Estilos generales */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+      font-family: 'Pacifico', cursive; /* Fuente personalizada */
+      color: #333;
+      overflow: hidden; /* Para evitar scroll por los emojis flotantes */
+    }
+
+    .container {
+      text-align: center;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .heart {
+      font-size: 80px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .heart:hover {
+      transform: scale(1.2);
+      box-shadow: 0 8px 15px rgba(255, 105, 180, 0.5);
+    }
+
+    .counter {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #4caf50;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .counter span {
+      color: #ff5722;
+    }
+
+    h1 {
+      color: #87CEEB; /* Azul clarito */
+      font-size: 36px;
+    }
+
+    p {
+      color: #4682B4; /* Azul más oscuro */
+      font-size: 18px;
+    }
+
+    /* Animación */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Estilos para los emojis flotantes */
+    .floating-heart {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp 2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(1.5);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💖 PARA MI PRINCESA 💖</h1>
+    <p>Haz clic en el corazón para aumentar el contador:</p>
+    <div 
+      class="heart" 
+      id="flower" 
+      role="button" 
+      aria-label="Botón de corazón"
+    >💗</div>
+    <div class="counter" id="counter">Clics: <span>0</span></div>
+  </div>
+  <script>
+    document.body.style.background = "url('https://via.placeholder.com/1920x1080') no-repeat center center fixed";
+    document.body.style.backgroundSize = "cover";
+
+    // Selección de elementos
+    const flower = document.getElementById('flower');
+    const counter = document.getElementById('counter');
+    const counterSpan = counter.querySelector('span');
+    let clickCount = 0;
+
+    // Evento de clic en el corazón
+    flower.addEventListener('click', () => {
+      clickCount++;
+      counterSpan.textContent = `${clickCount} 🌸`; // Mostrar el número de clics en el contador
+
+      // Animación de "rebote" al hacer clic
+      flower.style.transform = 'scale(1.2)';
+      setTimeout(() => {
+        flower.style.transform = 'scale(1)';
+      }, 150);
+
+      // Crear un texto flotante según el rango de clics
+      if (clickCount <= 100) {
+        const floatingText = document.createElement('div');
+        floatingText.classList.add('floating-heart');
+
+        if (clickCount <= 25) {
+          floatingText.textContent = 'MI CIELO 🌸';
+          floatingText.classList.add('mi-cielo'); // Aplicar estilo rosa
+        } else if (clickCount <= 50) {
+          floatingText.textContent = 'MI NIÑA 🌸';
+          floatingText.classList.add('mi-nina'); // Aplicar estilo azul clarito
+        } else if (clickCount <= 75) {
+          floatingText.textContent = 'MI AMOR 🌸';
+          floatingText.classList.add('mi-amor'); // Aplicar estilo rojo
+        } else if (clickCount <= 100) {
+          floatingText.textContent = 'TE AMO ❤️';
+          floatingText.classList.add('te-amo'); // Aplicar estilo rojo intenso
+        }
+
+        document.body.appendChild(floatingText);
+
+        // Generar posiciones aleatorias dentro de la ventana
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        floatingText.style.left = `${x}px`;
+        floatingText.style.top = `${y}px`;
+
+        // Eliminar el texto después de la animación
+        floatingText.addEventListener('animationend', () => {
+          floatingText.remove();
+        });
+      }
+
+      // Redirigir a otra página al llegar a 100 clics
+      if (clickCount === 100) {
+        window.location.href = 'otra_pagina.html'; // Cambia 'otra_pagina.html' por la URL deseada
+      }
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
